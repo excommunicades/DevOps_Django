@@ -71,7 +71,7 @@ TEMPLATES = [
         },
     },
 ]
- 
+
 WSGI_APPLICATION = "DevOpsDjango.wsgi.application"
 
 
