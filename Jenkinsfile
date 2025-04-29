@@ -16,7 +16,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build(DOCKER_IMAGE_NAME, 'DevOpsDjango/DockerFile')
+                    docker.build(DOCKER_IMAGE_NAME, 'DevOpsDjango')
                 }
             }
         }
