@@ -1,19 +1,35 @@
 pipeline {
     agent any
+    environment {
+        DOCKER_HUB_CREDENTIALS = credentials('docker-hub-credentials')
+        DOCKER_IMAGE_NAME = "excommunicades/devops_django"
+        GITHUB_CREDENTIALS = credentials('github-token')
+    }
     stages {
         stage('Checkout') {
             steps {
-                echo 'Checkout stage'
+                script {
+                    echo 'Cloning the repository...'
+                    git credentialsId: 'github-token', url: 'https://github.com/excommunicades/DevOps_Django.git'
+                }
             }
         }
         stage('Build Docker Image') {
             steps {
-                echo 'Build Docker Image stage'
+                script {
+                    echo 'Building Docker image...'
+                    docker.build(DOCKER_IMAGE_NAME, '.')
+                }
             }
         }
         stage('Push Docker Image to Docker Hub') {
             steps {
-                echo 'Push Docker Image to Docker Hub stage'
+                script {
+                    echo 'Pushing Docker image to Docker Hub...'
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+                        docker.image(DOCKER_IMAGE_NAME).push()
+                    }
+                }
             }
         }
     }
@@ -26,3 +42,4 @@ pipeline {
         }
     }
 }
+ 
