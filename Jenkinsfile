@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                     echo 'Building Docker image...'
-                    docker.build(DOCKER_IMAGE_NAME, '.')
+                    docker.build(DOCKER_IMAGE_NAME, 'DevOpsDjango/')
                 }
             }
         }
@@ -42,4 +42,3 @@ pipeline {
         }
     }
 }
- 
