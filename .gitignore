@@ -29,7 +29,7 @@ media/
 static/
 *.pot
 *.mo
-*.pyc
+*.pyc 
 
 # Environment variables
 .env
