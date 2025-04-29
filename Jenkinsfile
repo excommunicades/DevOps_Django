@@ -9,6 +9,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
+                    echo 'Cloning the repository...'
                     git credentialsId: 'github-token', url: 'https://github.com/excommunicades/DevOps_Django.git'
                 }
             }
@@ -16,13 +17,15 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build(DOCKER_IMAGE_NAME, 'DevOpsDjango')
+                    echo 'Building Docker image...'
+                    docker.build(DOCKER_IMAGE_NAME, '.')
                 }
             }
         }
         stage('Push Docker Image to Docker Hub') {
             steps {
                 script {
+                    echo 'Pushing Docker image to Docker Hub...'
                     docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
                         docker.image(DOCKER_IMAGE_NAME).push()
                     }
