@@ -10,14 +10,22 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
+# Копируем файл зависимостей
 COPY reqs.txt .
 
+# Устанавливаем зависимости
 RUN pip install --upgrade pip && pip install -r reqs.txt
 
+# Копируем остальные файлы
 COPY . .
 
-RUN python manage.py collectstatic --noinput
+# Создаем директорию для статики и даем на нее права
+RUN mkdir -p /app/staticfiles && chmod -R 777 /app/staticfiles
+
+# Выполняем команду collectstatic с подробным выводом
+RUN python manage.py collectstatic --noinput --verbosity 3
 
 EXPOSE 8000
 
+# Запуск приложения через gunicorn
 CMD ["gunicorn", "project_name.wsgi:application", "--bind", "0.0.0.0:8000"]
