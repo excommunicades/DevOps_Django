@@ -1,0 +1,79 @@
+pyproject.toml
+uv.lock
+.python-version
+k8s/
+Jenkins/
+
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+*.manifest
+*.spec
+*.swp
+*.swo
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+static/
+*.pot
+*.mo
+*.pyc
+
+# Environment variables
+.env
+.env.*
+.venv/
+venv/
+ENV/
+env/
+venv.bak/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# Flask / Jupyter Notebook (if you have them)
+*.ipynb_checkpoints
+
+# Coverage reports
+.coverage
+.coverage.*
+nosetests.xml
+coverage.xml
+*.cover
+
+# Test and migration files (not usually necessary)
+tests.db
+*.log
+
+# MySQL / PostgreSQL database files (add any specific DBs)
+*.sql
+*.db
+
+# Backup files
+*.bak
+*.swp
+name

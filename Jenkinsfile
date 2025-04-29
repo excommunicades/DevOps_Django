@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+    environment {
+        DOCKER_HUB_CREDENTIALS = credentials('docker-hub-credentials')
+        DOCKER_IMAGE_NAME = "excommunicades/devops_django"
+        GITHUB_CREDENTIALS = credentials('github-token')
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    git credentialsId: 'github-token', url: 'https://github.com/excommunicades/DevOps_Django.git'
+                }
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    docker.build(DOCKER_IMAGE_NAME)
+                }
+            }
+        }
+        stage('Push Docker Image to Docker Hub') {
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+                        docker.image(DOCKER_IMAGE_NAME).push()
+                    }
+                }
+            }
+        }
+    }
+    post {
+        success {
+            echo 'Pipeline succeeded!'
+        }
+        failure {
+            echo 'Pipeline failed!'
+        }
+    }
+}
