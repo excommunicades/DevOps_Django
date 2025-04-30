@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         DOCKER_HUB_CREDENTIALS = credentials('docker-hub-credentials')
-        DOCKER_IMAGE_NAME = "excommunicades/devops_django3"
+        DOCKER_IMAGE_NAME = "excommunicades/devops_django4"
         GITHUB_CREDENTIALS = credentials('github-token')
     }
     stages {
