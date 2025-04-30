@@ -1,8 +1,10 @@
 asgiref==3.8.1
 attrs==25.3.0
+click==8.1.8
 django==5.2
 djangorestframework==3.16.0
 drf-spectacular==0.28.0
+h11==0.16.0
 inflection==0.5.1
 jsonschema==4.23.0
 jsonschema-specifications==2025.4.1
@@ -17,3 +19,4 @@ rpds-py==0.24.0
 sqlparse==0.5.3
 typing-extensions==4.13.2
 uritemplate==4.1.1
+uvicorn==0.34.2
