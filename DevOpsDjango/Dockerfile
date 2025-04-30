@@ -29,4 +29,4 @@ RUN python manage.py collectstatic --noinput --verbosity 3
 EXPOSE 8000
 
 # Запуск приложения через gunicorn
-CMD ["uvicorn", "DevOpsDjango.wsgi:application", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "DevOpsDjango.asgi:application", "--host", "0.0.0.0", "--port", "8000"]
